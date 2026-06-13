@@ -4,7 +4,7 @@ from typing import Optional
 
 from langchain.tools import ToolRuntime, tool
 
-from deer_code.tools.reminders import generate_reminders
+# from deer_code.tools.reminders import generate_reminders
 
 from .ignore import DEFAULT_IGNORE_PATTERNS
 
@@ -15,7 +15,7 @@ def ls_tool(
     path: str,
     match: Optional[list[str]] = None,
     ignore: Optional[list[str]] = None,
-) :
+) -> str :
     """Lists files and directories in a given path. Optionally provide an array of glob patterns to match and ignore.
 
     Args:
@@ -63,7 +63,8 @@ def ls_tool(
             filtered_items.append(item)
     items = filtered_items
 
-    reminders = generate_reminders(runtime)
+    # reminders = generate_reminders(runtime)
+    reminders = ""
 
     # Format the output
     if not items:

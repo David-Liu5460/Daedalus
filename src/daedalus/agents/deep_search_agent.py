@@ -1,7 +1,7 @@
 from langchain.agents import create_agent
 
-from models.chat_model import init_chat_model
-from tools.search_tool import search_tool
+from daedalus.models.chat_model import init_chat_model
+from daedalus.tools.search_tool import search_tool
 
 
 deep_search_agent=create_agent(
