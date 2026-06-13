@@ -1,0 +1,11 @@
+{
+  "$schema": "https://langgra.ph/schema.json",
+  "dependencies": ["."],
+  "env": {
+    "PROJECT_ROOT": "/Users/bytedance/Documents/projects/github/Daedalus"
+  },
+  "graphs": {
+    "deep_search_agent": "deep_search_agent:deep_search_agent",
+    "coding_agent": "deer_code.agents.coding_agent:create_coding_agent_for_debug"
+  }
+}
