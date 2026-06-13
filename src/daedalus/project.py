@@ -24,4 +24,6 @@ class Project:
         self._root_dir = path
 
 
-project = Project(os.getcwd())
+# project = Project(os.getcwd())
+
+project = Project("/Users/bytedance/Documents/projects/github/next_demo")
