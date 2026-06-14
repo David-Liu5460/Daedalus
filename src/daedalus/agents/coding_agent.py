@@ -11,20 +11,26 @@ from daedalus.tools.tree_tool import tree_tool
 
 from daedalus.prompts import apply_prompt_template
 
-coding_agent = create_agent(
-    model=init_chat_model(),
-    tools=[ls_tool, tree_tool, text_editor_tool],
-    # system_prompt=f"""You are a helpful assistant that can help with coding tasks.
-    # # Project Information
-    # PROJECT_ROOT_DIR={project.root_dir}
-    # """,
-    system_prompt=apply_prompt_template("coding_agent", PROJECT_ROOT=project.root_dir),
-    middleware=[
-        TodoListMiddleware(),
-        SummarizationMiddleware(
-            model=init_chat_model(),
-            trigger=("tokens", 4000),
-            keep=("messages", 20),
+
+def create_coding_agent(plugin_tools=None):
+    tools = [ls_tool, tree_tool, text_editor_tool]
+    if plugin_tools:
+        tools.extend(plugin_tools)
+    return create_agent(
+        model=init_chat_model(),
+        tools=tools,
+        system_prompt=apply_prompt_template(
+            "coding_agent", PROJECT_ROOT=project.root_dir
         ),
-    ],
-)
+        middleware=[
+            TodoListMiddleware(),
+            SummarizationMiddleware(
+                model=init_chat_model(),
+                trigger=("tokens", 4000),
+                keep=("messages", 20),
+            ),
+        ],
+    )
+
+
+coding_agent = create_coding_agent()
